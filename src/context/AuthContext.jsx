@@ -8,12 +8,13 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/auth/me", { withCredentials: true })
-      .then((res) => setUser(res.data))
-      .catch(() => setUser(null))
-      .finally(() => setLoading(false));
-  }, []);
+    if (!user?.email)
+      axios
+        .get("http://localhost:5000/api/auth/me", { withCredentials: true })
+        .then((res) => setUser(res.data))
+        .catch(() => setUser(null))
+        .finally(() => setLoading(false));
+  }, [user]);
 
   const login = async (email, password) => {
     const res = await axios.post(

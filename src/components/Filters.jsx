@@ -16,9 +16,10 @@ function Filters({
             onChange={(e) => setCategory(e.target.value)}
           >
             <option value="all">All Categories</option>
-            <option value="feature">Feature</option>
+            <option value="features">Features</option>
             <option value="bug">Bug</option>
             <option value="enhancement">Enhancement</option>
+            <option value="authentication">Authentication</option>
           </select>
           <i className="fas fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
         </div>
