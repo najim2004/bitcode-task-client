@@ -64,12 +64,12 @@ Create a `.env` file in the root of the `client` directory and add the following
 ```env
 VITE_API_URL=<your-backend-api-url>
 ```
+Replace `<your-backend-api-url>` with the actual URL of your backend API.
 
 ### Backend
 
 Backend repository: [https://github.com/najim2004/bitcode-task-server](https://github.com/najim2004/bitcode-task-server)
 
-Replace `<your-backend-api-url>` with the actual URL of your backend API.
 
 ### Development
 
