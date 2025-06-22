@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-function RoadmapItem({ item, user, onUpvote, onClick }) {
+function RoadmapItem({ item, onUpvote, onClick }) {
   const { user: authUser } = useContext(AuthContext);
 
   return (

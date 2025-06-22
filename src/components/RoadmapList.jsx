@@ -17,14 +17,17 @@ function RoadmapList() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/roadmap", {
-          params: {
-            category: category !== "all" ? category : undefined,
-            status: status !== "all" ? status.replace("-", " ") : undefined,
-            sort: sortBy === "popular" ? "popularity" : "createdAt",
-          },
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/roadmap`,
+          {
+            params: {
+              category: category !== "all" ? category : undefined,
+              status: status !== "all" ? status.replace("-", " ") : undefined,
+              sort: sortBy === "popular" ? "popularity" : "createdAt",
+            },
+            withCredentials: true,
+          }
+        );
         setItems(res.data);
       } catch (err) {
         console.error("Failed to fetch roadmap items:", err);
@@ -46,11 +49,11 @@ function RoadmapList() {
       };
       setItems(items.map((i) => (i._id === itemId ? updatedItem : i)));
       await axios.post(
-        `http://localhost:5000/api/roadmap/${itemId}/upvote`,
+        `${import.meta.env.VITE_API_URL}/api/roadmap/${itemId}/upvote`,
         {},
         { withCredentials: true }
       );
-    } catch (err) {
+    } catch {
       setItems([...items]); // Rollback
       alert("Failed to upvote");
     }

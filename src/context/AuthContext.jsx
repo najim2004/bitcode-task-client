@@ -10,7 +10,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (!user?.email)
       axios
-        .get("http://localhost:5000/api/auth/me", { withCredentials: true })
+        .get(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+          withCredentials: true,
+        })
         .then((res) => setUser(res.data))
         .catch(() => setUser(null))
         .finally(() => setLoading(false));
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await axios.post(
-      "http://localhost:5000/api/auth/login",
+      `${import.meta.env.VITE_API_URL}/api/auth/login`,
       { email, password },
       { withCredentials: true }
     );
@@ -27,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (email, password) => {
     const res = await axios.post(
-      "http://localhost:5000/api/auth/signup",
+      `${import.meta.env.VITE_API_URL}/api/auth/signup`,
       { email, password },
       { withCredentials: true }
     );
@@ -36,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await axios.post(
-      "http://localhost:5000/api/auth/logout",
+      `${import.meta.env.VITE_API_URL}/api/auth/logout`,
       {},
       { withCredentials: true }
     );

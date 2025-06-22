@@ -4,46 +4,46 @@ This project is a React application bootstrapped with Vite. It provides a modern
 
 ## Technologies Used
 
-*   React
-*   Vite
+- React
+- Vite
 
-*   @tailwindcss/vite
-*   Axios
-*   clsx
-*   lucide-react
-*   react-router-dom
-*   tailwind-merge
-*   Tailwind CSS
+- @tailwindcss/vite
+- Axios
+- clsx
+- lucide-react
+- react-router-dom
+- tailwind-merge
+- Tailwind CSS
 
 ## Project Structure
 
-*   `index.html`: The main HTML file.
-*   `src/`: Contains the React application source code.
-    *   `App.jsx`: The main application component, responsible for routing and layout.
-    *   `index.css`: Global styles for the application.
-    *   `main.jsx`: Entry point for the React application.
-    *   `assets/`: Contains static assets such as images and SVGs.
-    *   `components/`: Reusable React components.
-        *   `AuthModal.jsx`: Authentication modal component.
-        *   `CommentSection.jsx`: Component for displaying and managing comments.
-        *   `Filters.jsx`: Component for filtering roadmap items.
-        *   `Footer.jsx`: Footer component.
-        *   `Navbar.jsx`: Navigation bar component.
-        *   `RoadmapItem.jsx`: Component for displaying a single roadmap item.
-        *   `RoadmapList.jsx`: Component for displaying a list of roadmap items.
-    *   `context/`: React Context providers.
-        *   `AuthContext.jsx`: Authentication context.
-*   `public/`: Static assets.
-*   `vite.config.js`: Vite configuration file.
-*   `eslint.config.js`: ESLint configuration file.
-*   `package.json`: Project dependencies and scripts.
+- `index.html`: The main HTML file.
+- `src/`: Contains the React application source code.
+  - `App.jsx`: The main application component, responsible for routing and layout.
+  - `index.css`: Global styles for the application.
+  - `main.jsx`: Entry point for the React application.
+  - `assets/`: Contains static assets such as images and SVGs.
+  - `components/`: Reusable React components.
+    - `AuthModal.jsx`: Authentication modal component.
+    - `CommentSection.jsx`: Component for displaying and managing comments.
+    - `Filters.jsx`: Component for filtering roadmap items.
+    - `Footer.jsx`: Footer component.
+    - `Navbar.jsx`: Navigation bar component.
+    - `RoadmapItem.jsx`: Component for displaying a single roadmap item.
+    - `RoadmapList.jsx`: Component for displaying a list of roadmap items.
+  - `context/`: React Context providers.
+    - `AuthContext.jsx`: Authentication context.
+- `public/`: Static assets.
+- `vite.config.js`: Vite configuration file.
+- `eslint.config.js`: ESLint configuration file.
+- `package.json`: Project dependencies and scripts.
 
 ## Getting Started
 
 ### Prerequisites
 
-*   Node.js (>=18)
-*   npm or yarn
+- Node.js (>=18)
+- npm or yarn
 
 ### Installation
 
@@ -56,6 +56,20 @@ or
 ```bash
 yarn install
 ```
+
+### Environment Variables
+
+Create a `.env` file in the root of the `client` directory and add the following variable:
+
+```env
+VITE_API_URL=<your-backend-api-url>
+```
+
+### Backend
+
+Backend repository: [https://github.com/najim2004/bitcode-task-server](https://github.com/najim2004/bitcode-task-server)
+
+Replace `<your-backend-api-url>` with the actual URL of your backend API.
 
 ### Development
 
@@ -107,10 +121,10 @@ yarn lint
 
 The project uses ESLint for code linting. The configuration is defined in `eslint.config.js` and includes the following:
 
-*   `eslint:recommended` rules
-*   `react-hooks/rules`
-*   `react-refresh/only-export-components`
-*   Ignores the `dist` directory
+- `eslint:recommended` rules
+- `react-hooks/rules`
+- `react-refresh/only-export-components`
+- Ignores the `dist` directory
 
 ## Contributing
 

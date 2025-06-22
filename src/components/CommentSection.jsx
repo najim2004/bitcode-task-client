@@ -14,10 +14,13 @@ function CommentSection({ roadmapItemId }) {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/comments", {
-          params: { roadmapItem: roadmapItemId },
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/comments`,
+          {
+            params: { roadmapItem: roadmapItemId },
+            withCredentials: true,
+          }
+        );
         console.log("Fetched comments:", res.data); // Debug log
         setComments(res.data);
       } catch (err) {
@@ -34,13 +37,13 @@ function CommentSection({ roadmapItemId }) {
       return alert("Comment cannot exceed 300 characters");
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/comments",
+        `${import.meta.env.VITE_API_URL}/api/comments`,
         { content: newComment, roadmapItem: roadmapItemId, parentId: null },
         { withCredentials: true }
       );
       setComments([...comments, { ...res.data, replies: [] }]);
       setNewComment("");
-    } catch (err) {
+    } catch {
       alert("Failed to add comment");
     }
   };
@@ -57,7 +60,7 @@ function CommentSection({ roadmapItemId }) {
       return alert("Reply cannot exceed 300 characters");
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/comments",
+        `${import.meta.env.VITE_API_URL}/api/comments`,
         {
           content: replyText,
           roadmapItem: roadmapItemId,
@@ -68,7 +71,7 @@ function CommentSection({ roadmapItemId }) {
       setComments(addCommentToTree(comments, res.data, replyingTo));
       setReplyText("");
       setReplyingTo(null);
-    } catch (err) {
+    } catch {
       alert("Failed to add reply");
     }
   };
@@ -85,14 +88,14 @@ function CommentSection({ roadmapItemId }) {
       return alert("Comment cannot exceed 300 characters");
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/comments/${editingComment}`,
+        `${import.meta.env.VITE_API_URL}/api/comments/${editingComment}`,
         { content: editText },
         { withCredentials: true }
       );
       setComments(updateCommentInTree(comments, editingComment, res.data));
       setEditText("");
       setEditingComment(null);
-    } catch (err) {
+    } catch {
       alert("Failed to edit comment");
     }
   };
@@ -100,11 +103,14 @@ function CommentSection({ roadmapItemId }) {
   const handleDelete = async (commentId) => {
     if (!user) return alert("Please log in to delete comments");
     try {
-      await axios.delete(`http://localhost:5000/api/comments/${commentId}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/comments/${commentId}`,
+        {
+          withCredentials: true,
+        }
+      );
       setComments(removeCommentFromTree(comments, commentId));
-    } catch (err) {
+    } catch {
       alert("Failed to delete comment");
     }
   };
@@ -157,7 +163,10 @@ function CommentSection({ roadmapItemId }) {
             <div className="flex items-start justify-between">
               <div className="flex items-center">
                 <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white">
-                  {comment.user?.email[0]?.toUpperCase() || "?"}
+                  {typeof comment.user?.email === "string" &&
+                  comment.user.email.length > 0
+                    ? comment.user.email[0].toUpperCase()
+                    : "?"}
                 </div>
                 <div className="ml-3">
                   <span className="font-medium text-gray-900">
